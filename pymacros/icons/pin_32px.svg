@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 6.3499998 6.3500002"
+   version="1.1"
+   id="svg1011"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   sodipodi:docname="pin_24px.svg"
+   inkscape:export-filename="pin_24px.png"
+   inkscape:export-xdpi="96.000008"
+   inkscape:export-ydpi="96.000008"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1013"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="true"
+     units="px"
+     inkscape:snap-nodes="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-others="false"
+     inkscape:zoom="8.644231"
+     inkscape:cx="-3.4126807"
+     inkscape:cy="14.98109"
+     inkscape:window-width="1536"
+     inkscape:window-height="982"
+     inkscape:window-x="172"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     width="24px"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1074"
+       spacingx="0.13229167"
+       spacingy="0.13229167"
+       empspacing="2"
+       originx="0"
+       originy="0"
+       units="px" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1008">
+    <linearGradient
+       id="linearGradient3600">
+      <stop
+         style="stop-color:#ff9f3f;stop-opacity:1;"
+         offset="0"
+         id="stop3602" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3604" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3600"
+       id="linearGradient878"
+       x1="0.26458335"
+       y1="0.26458335"
+       x2="6.0854168"
+       y2="6.0854168"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3600"
+       id="linearGradient1237"
+       x1="5.4239583"
+       y1="5.4239583"
+       x2="0.92604166"
+       y2="0.92604166"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.87499994,0,0,0.87499994,0.39687515,0.39687515)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="color:#000000;overflow:visible;fill:none;stroke:#ffffff;stroke-width:0.52916667;stroke-dashoffset:2.5;stroke-opacity:0.5;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect7838"
+       width="5.0270834"
+       height="5.0270834"
+       x="0.66145831"
+       y="0.66145831" />
+    <rect
+       style="fill:none;stroke:#865b26;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3596"
+       width="6.3499994"
+       height="6.3499999"
+       x="5.0000006e-07"
+       y="5.0000006e-07"
+       inkscape:export-filename="/home/matthias/klayout/master/src/lay/lay/images/back.png"
+       inkscape:export-xdpi="27.093315"
+       inkscape:export-ydpi="27.093315" />
+    <rect
+       style="color:#000000;overflow:visible;fill:url(#linearGradient878);stroke:#000000;stroke-width:0.26458333;stroke-dashoffset:2.5;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect848"
+       width="5.0270834"
+       height="5.0270834"
+       x="0.66145831"
+       y="0.66145831" />
+    <rect
+       style="color:#000000;overflow:visible;fill:url(#linearGradient1237);fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.5;stroke-opacity:1"
+       id="rect1100"
+       width="3.7041667"
+       height="3.7041667"
+       x="1.3229167"
+       y="1.3229167" />
+    <rect
+       style="color:#000000;overflow:visible;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.499998;stroke-opacity:0.999955"
+       id="rect2365"
+       width="1.3229166"
+       height="0.26458332"
+       x="-3.964859"
+       y="3.0826702"
+       transform="scale(-1,1)" />
+    <rect
+       style="color:#000000;overflow:visible;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.499998;stroke-opacity:0.999955"
+       id="rect2367"
+       width="1.3229166"
+       height="0.26458332"
+       x="2.553504"
+       y="-3.4356933"
+       transform="rotate(90)" />
+    <circle
+       style="color:#000000;overflow:visible;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.499998;stroke-opacity:0.999955"
+       id="circle2369"
+       cx="-3.3034012"
+       cy="3.2149615"
+       r="0.26458332"
+       transform="scale(-1,1)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944px;line-height:125%;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1.1964687"
+       y="3.1568351"
+       id="text2465"><tspan
+         sodipodi:role="line"
+         id="tspan2463"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.46944px;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif Bold Italic';stroke-width:0.264583px"
+         x="1.1964687"
+         y="3.1568351">P</tspan></text>
+  </g>
+</svg>
