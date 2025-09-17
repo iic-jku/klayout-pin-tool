@@ -1,0 +1,375 @@
+{
+    "tech_name": "sg13g2",
+    "layer_group_definitions": [
+        {
+            "name": "nBuLay.PinLayers",
+            "layers": [
+                "nBuLay.pin"
+            ]
+        },
+        {
+            "name": "nBuLay.LabelLayers",
+            "layers": [
+                "nBuLay.label"
+            ]
+        },
+        {
+            "name": "nBuLay.RelatedLayers",
+            "layers": [
+                "nBuLay.pin",
+                "nBuLay.drawing",
+                "nBuLay.label",
+                "nBuLay.net",
+                "nBuLay.boundary",
+                "nBuLay.block"
+            ]
+        },
+        {
+            "name": "NWell.PinLayers",
+            "layers": [
+                "NWell.pin"
+            ]
+        },
+        {
+            "name": "NWell.LabelLayers",
+            "layers": [
+                "NWell.label"
+            ]
+        },
+        {
+            "name": "NWell.RelatedLayers",
+            "layers": [
+                "NWell.pin",
+                "NWell.drawing",
+                "NWell.label",
+                "NWell.net",
+                "NWell.boundary"
+            ]
+        },
+        {
+            "name": "GatPoly.PinLayers",
+            "layers": [
+                "GatPoly.pin"
+            ]
+        },
+        {
+            "name": "GatPoly.LabelLayers",
+            "layers": [
+                "GatPoly.label"
+            ]
+        },
+        {
+            "name": "GatPoly.RelatedLayers",
+            "layers": [
+                "GatPoly.pin",
+                "GatPoly.drawing",
+                "GatPoly.label",
+                "GatPoly.net",
+                "GatPoly.boundary",
+                "GatPoly.nofill"
+            ]
+        },
+        {
+            "name": "Metal1.PinLayers",
+            "layers": [
+                "Metal1.pin"
+            ]
+        },
+        {
+            "name": "Metal1.LabelLayers",
+            "layers": [
+                "Metal1.text"
+            ]
+        },
+        {
+            "name": "Metal1.RelatedLayers",
+            "layers": [
+                "Metal1.drawing",
+                "Metal1.pin",
+                "Metal1.text",
+                "Metal1.label",
+                "Metal1.diffprb"
+            ]
+        },
+        {
+            "name": "Metal2.PinLayers",
+            "layers": [
+                "Metal2.pin"
+            ]
+        },
+        {
+            "name": "Metal2.LabelLayers",
+            "layers": [
+                "Metal2.text"
+            ]
+        },
+        {
+            "name": "Metal2.RelatedLayers",
+            "layers": [
+                "Metal2.drawing",
+                "Metal2.pin",
+                "Metal2.text",
+                "Metal2.label"
+            ]
+        },
+        {
+            "name": "Metal3.PinLayers",
+            "layers": [
+                "Metal3.pin"
+            ]
+        },
+        {
+            "name": "Metal3.LabelLayers",
+            "layers": [
+                "Metal3.text"
+            ]
+        },
+        {
+            "name": "Metal3.RelatedLayers",
+            "layers": [
+                "Metal3.drawing",
+                "Metal3.pin",
+                "Metal3.text",
+                "Metal3.label"
+            ]
+        },
+        {
+            "name": "Metal4.PinLayers",
+            "layers": [
+                "Metal4.pin"
+            ]
+        },
+        {
+            "name": "Metal4.LabelLayers",
+            "layers": [
+                "Metal4.text"
+            ]
+        },
+        {
+            "name": "Metal4.RelatedLayers",
+            "layers": [
+                "Metal4.drawing",
+                "Metal4.pin",
+                "Metal4.text",
+                "Metal4.label"
+            ]
+        },
+        {
+            "name": "Metal5.PinLayers",
+            "layers": [
+                "Metal5.pin"
+            ]
+        },
+        {
+            "name": "Metal5.LabelLayers",
+            "layers": [
+                "Metal5.text"
+            ]
+        },
+        {
+            "name": "Metal5.RelatedLayers",
+            "layers": [
+                "Metal5.drawing",
+                "Metal5.pin",
+                "Metal5.text",
+                "Metal5.label"
+            ]
+        },
+        {
+            "name": "TopMetal1.PinLayers",
+            "layers": [
+                "TopMetal1.pin"
+            ]
+        },
+        {
+            "name": "TopMetal1.LabelLayers",
+            "layers": [
+                "TopMetal1.text"
+            ]
+        },
+        {
+            "name": "TopMetal1.RelatedLayers",
+            "layers": [
+                "TopMetal1.drawing",
+                "TopMetal1.pin",
+                "TopMetal1.text",
+                "TopMetal1.label"
+            ]
+        },
+        {
+            "name": "TopMetal2.PinLayers",
+            "layers": [
+                "TopMetal2.pin"
+            ]
+        },
+        {
+            "name": "TopMetal2.LabelLayers",
+            "layers": [
+                "TopMetal2.text"
+            ]
+        },
+        {
+            "name": "TopMetal2.RelatedLayers",
+            "layers": [
+                "TopMetal2.drawing",
+                "TopMetal2.pin",
+                "TopMetal2.text",
+                "TopMetal2.label"
+            ]
+        },
+        {
+            "name": "IND.PinLayers",
+            "layers": [
+                "IND.pin"
+            ]
+        },
+        {
+            "name": "IND.LabelLayers",
+            "layers": [
+                "IND.text"
+            ]
+        },
+        {
+            "name": "IND.RelatedLayers",
+            "layers": [
+                "IND.pin",
+                "IND.drawing",
+                "IND.text"
+            ]
+        }
+    ],
+    "pin_layer_infos": [
+        {
+            "short_layer_name": "nBuLay",
+            "related_layers": [
+                "nBuLay.RelatedLayers"
+            ],
+            "pin_layers": [
+                "nBuLay.PinLayers"
+            ],
+            "label_layers": [
+                "nBuLay.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "NWell",
+            "related_layers": [
+                "NWell.RelatedLayers"
+            ],
+            "pin_layers": [
+                "NWell.PinLayers"
+            ],
+            "label_layers": [
+                "NWell.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "GatPoly",
+            "related_layers": [
+                "GatPoly.RelatedLayers"
+            ],
+            "pin_layers": [
+                "GatPoly.PinLayers"
+            ],
+            "label_layers": [
+                "GatPoly.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "Metal1",
+            "related_layers": [
+                "Metal1.RelatedLayers"
+            ],
+            "pin_layers": [
+                "Metal1.PinLayers"
+            ],
+            "label_layers": [
+                "Metal1.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "Metal2",
+            "related_layers": [
+                "Metal2.RelatedLayers"
+            ],
+            "pin_layers": [
+                "Metal2.PinLayers"
+            ],
+            "label_layers": [
+                "Metal2.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "Metal3",
+            "related_layers": [
+                "Metal3.RelatedLayers"
+            ],
+            "pin_layers": [
+                "Metal3.PinLayers"
+            ],
+            "label_layers": [
+                "Metal3.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "Metal4",
+            "related_layers": [
+                "Metal4.RelatedLayers"
+            ],
+            "pin_layers": [
+                "Metal4.PinLayers"
+            ],
+            "label_layers": [
+                "Metal4.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "Metal5",
+            "related_layers": [
+                "Metal5.RelatedLayers"
+            ],
+            "pin_layers": [
+                "Metal5.PinLayers"
+            ],
+            "label_layers": [
+                "Metal5.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "TopMetal1",
+            "related_layers": [
+                "TopMetal1.RelatedLayers"
+            ],
+            "pin_layers": [
+                "TopMetal1.PinLayers"
+            ],
+            "label_layers": [
+                "TopMetal1.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "TopMetal2",
+            "related_layers": [
+                "TopMetal2.RelatedLayers"
+            ],
+            "pin_layers": [
+                "TopMetal2.PinLayers"
+            ],
+            "label_layers": [
+                "TopMetal2.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "IND",
+            "related_layers": [
+                "IND.RelatedLayers"
+            ],
+            "pin_layers": [
+                "IND.PinLayers"
+            ],
+            "label_layers": [
+                "IND.LabelLayers"
+            ]
+        }
+    ]
+}
