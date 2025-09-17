@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<salt-grain>
+ <name>PinToolPlugin</name>
+ <token/>
+ <hidden>false</hidden>
+ <version>0.1</version>
+ <api-version/>
+ <title>Pin Tool Plugin</title>
+ <doc>Efficient placement of pins</doc>
+ <doc-url>https://github.com/iic-jku/klayout-pin-tool</doc-url>
+ <url/>
+ <license>GPLv3</license>
+ <author>Martin Jan Köhler</author>
+ <author-contact/>
+ <authored-time/>
+ <installed-time></installed-time>
+ <icon></icon>
+ <screenshot></screenshot>
+</salt-grain>
