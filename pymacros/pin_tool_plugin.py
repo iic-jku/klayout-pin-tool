@@ -489,6 +489,8 @@ class PinToolPlugin(pya.Plugin):
                 if lyr == -1:
                     raise Exception(f"PinToolPlugin.commit_place_pin, can't find layer index for layer {ln})")
                 self.layout.insert(cell_index, lyr, t)
+                
+                config.save()
         except Exception as e:
             print("PinToolPlugin.commit_place_pin caught an exception", e)
             traceback.print_exc()
