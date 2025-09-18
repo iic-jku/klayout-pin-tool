@@ -1,0 +1,306 @@
+{
+    "tech_name": "sky130",
+    "layer_group_definitions": [
+        {
+            "name": "pwell.PinLayers",
+            "layers": [
+                "pwell.pin - 122/16"
+            ]
+        },
+        {
+            "name": "pwell.LabelLayers",
+            "layers": [
+                "pwell.label - 64/59"
+            ]
+        },
+        {
+            "name": "pwell.RelatedLayers",
+            "layers": [
+                "pwell.pin - 122/16",
+                "pwell.drawing - 64/44",
+                "pwell.label - 64/59",
+                "pwell.res - 64/13",
+                "pwell.cut - 64/14"
+            ]
+        },
+        {
+            "name": "nwell.PinLayers",
+            "layers": [
+                "nwell.pin - 64/16"
+            ]
+        },
+        {
+            "name": "nwell.LabelLayers",
+            "layers": [
+                "nwell.label - 64/5"
+            ]
+        },
+        {
+            "name": "nwell.RelatedLayers",
+            "layers": [
+                "nwell.pin - 64/16",
+                "nwell.drawing - 64/20",
+                "nwell.label - 64/5",
+                "nwell.net - 84/23"
+            ]
+        },
+        {
+            "name": "poly.PinLayers",
+            "layers": [
+                "poly.pin - 66/16"
+            ]
+        },
+        {
+            "name": "poly.LabelLayers",
+            "layers": [
+                "poly.label - 66/5"
+            ]
+        },
+        {
+            "name": "poly.RelatedLayers",
+            "layers": [
+                "poly.pin - 66/16",
+                "poly.drawing - 66/20",
+                "poly.label - 66/5",
+                "poly.net - 66/23",
+                "poly.boundary - 66/4"
+            ]
+        },
+        {
+            "name": "li1.PinLayers",
+            "layers": [
+                "li1.pin - 67/16"
+            ]
+        },
+        {
+            "name": "li1.LabelLayers",
+            "layers": [
+                "li1.label - 67/5"
+            ]
+        },
+        {
+            "name": "li1.RelatedLayers",
+            "layers": [
+                "li1.drawing - 67/20",
+                "li1.pin - 67/16",
+                "li1.label - 67/5",
+                "li1.res - 67/13"
+            ]
+        },
+        {
+            "name": "met1.PinLayers",
+            "layers": [
+                "met1.pin - 68/16"
+            ]
+        },
+        {
+            "name": "met1.LabelLayers",
+            "layers": [
+                "met1.label - 68/5"
+            ]
+        },
+        {
+            "name": "met1.RelatedLayers",
+            "layers": [
+                "met1.drawing - 68/20",
+                "met1.pin - 68/16",
+                "met1.label - 68/5",
+                "met1.res - 68/13"
+            ]
+        },
+        {
+            "name": "met2.PinLayers",
+            "layers": [
+                "met2.pin - 69/16"
+            ]
+        },
+        {
+            "name": "met2.LabelLayers",
+            "layers": [
+                "met2.label - 69/5"
+            ]
+        },
+        {
+            "name": "met2.RelatedLayers",
+            "layers": [
+                "met2.drawing - 69/20",
+                "met2.pin - 69/16",
+                "met2.label - 69/5",
+                "met2.res - 69/13"
+            ]
+        },
+        {
+            "name": "met3.PinLayers",
+            "layers": [
+                "met3.pin - 70/16"
+            ]
+        },
+        {
+            "name": "met3.LabelLayers",
+            "layers": [
+                "met3.label - 70/5"
+            ]
+        },
+        {
+            "name": "met3.RelatedLayers",
+            "layers": [
+                "met3.drawing - 70/20",
+                "met3.pin - 70/16",
+                "met3.label - 70/5",
+                "met3.res - 70/13"
+            ]
+        },
+        {
+            "name": "met4.PinLayers",
+            "layers": [
+                "met4.pin - 71/16"
+            ]
+        },
+        {
+            "name": "met4.LabelLayers",
+            "layers": [
+                "met4.label - 71/5"
+            ]
+        },
+        {
+            "name": "met4.RelatedLayers",
+            "layers": [
+                "met4.drawing - 71/20",
+                "met4.pin - 71/16",
+                "met4.label - 71/5",
+                "met4.res - 71/13"
+            ]
+        },
+        {
+            "name": "met5.PinLayers",
+            "layers": [
+                "met5.pin - 72/16"
+            ]
+        },
+        {
+            "name": "met5.LabelLayers",
+            "layers": [
+                "met5.label - 72/5"
+            ]
+        },
+        {
+            "name": "met5.RelatedLayers",
+            "layers": [
+                "met5.drawing - 72/20",
+                "met5.pin - 72/16",
+                "met5.label - 72/5",
+                "met5.res - 72/13"
+            ]
+        }
+    ],
+    "pin_layer_infos": [
+        {
+            "short_layer_name": "pwell",
+            "related_layers": [
+                "pwell.RelatedLayers"
+            ],
+            "pin_layers": [
+                "pwell.PinLayers"
+            ],
+            "label_layers": [
+                "pwell.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "nwell",
+            "related_layers": [
+                "nwell.RelatedLayers"
+            ],
+            "pin_layers": [
+                "nwell.PinLayers"
+            ],
+            "label_layers": [
+                "nwell.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "poly",
+            "related_layers": [
+                "poly.RelatedLayers"
+            ],
+            "pin_layers": [
+                "poly.PinLayers"
+            ],
+            "label_layers": [
+                "poly.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "li1",
+            "related_layers": [
+                "li1.RelatedLayers"
+            ],
+            "pin_layers": [
+                "li1.PinLayers"
+            ],
+            "label_layers": [
+                "li1.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "met1",
+            "related_layers": [
+                "met1.RelatedLayers"
+            ],
+            "pin_layers": [
+                "met1.PinLayers"
+            ],
+            "label_layers": [
+                "met1.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "met2",
+            "related_layers": [
+                "met2.RelatedLayers"
+            ],
+            "pin_layers": [
+                "met2.PinLayers"
+            ],
+            "label_layers": [
+                "met2.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "met3",
+            "related_layers": [
+                "met3.RelatedLayers"
+            ],
+            "pin_layers": [
+                "met3.PinLayers"
+            ],
+            "label_layers": [
+                "met3.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "met4",
+            "related_layers": [
+                "met4.RelatedLayers"
+            ],
+            "pin_layers": [
+                "met4.PinLayers"
+            ],
+            "label_layers": [
+                "met4.LabelLayers"
+            ]
+        },
+        {
+            "short_layer_name": "met5",
+            "related_layers": [
+                "met5.RelatedLayers"
+            ],
+            "pin_layers": [
+                "met5.PinLayers"
+            ],
+            "label_layers": [
+                "met5.LabelLayers"
+            ]
+        }
+    ]
+}
