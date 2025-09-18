@@ -453,6 +453,20 @@ class PinToolPlugin(pya.Plugin):
             return True
         return False
         
+    def key_event(self, key: int, buttons: int):
+        if Debugging.DEBUG:
+            debug(f"PinToolPlugin.key_event: key={key}, buttons={buttons}")
+
+        match key:
+            case pya.KeyCode.Tab:
+                if Debugging.DEBUG:
+                    debug("PinToolPlugin.key_event: tab!")
+                if self.setupDock is not None:
+                    self.clear_markers()
+                    self.setupDock.navigateToNextTextField()
+                    return True
+        return False                
+        
     def layer_properties_for_layer_name(self, name: str) -> Optional[pya.LayerPropertiesNodeRef]:
         iter = self.view.begin_layers()
         while not iter.at_end():
