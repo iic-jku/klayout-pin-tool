@@ -3,6 +3,9 @@
 <!--
 [![Watch the demo](doc/screenshot-demo-video.gif)](https://youtube.com/watch/v=TODO)
 -->
+<p align="center">
+<img align="middle" src="doc/klayout-pin-tool-screenshot.jpg" alt="KLayout Pin Tool" width="800"/>
+</p>
 
 * Boost your layout productivity with quick placement of pins
    * Just select an applicable layer (e.g. `Metal1.drawing`) and enter the pin text
