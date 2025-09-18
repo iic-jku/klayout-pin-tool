@@ -284,6 +284,18 @@ class PinToolPlugin(pya.Plugin):
             return None
         return name
     
+    def update_tech(self):
+        tech = self.tech
+        self.pdk_info = None
+        if tech is None:
+            if Debugging.DEBUG:
+                debug(f"PinToolPlugin.activate, can't find technology")
+        else:
+            self.pdk_info = self.pdk_info_factory.pdk_info(tech.name)
+        
+        if self.setupDock is not None:
+            self.setupDock.set_pdk_info(self.pdk_info)                
+    
     def activated(self):
         view_is_visible = self.view.widget().isVisible()
         if Debugging.DEBUG:
@@ -312,16 +324,11 @@ class PinToolPlugin(pya.Plugin):
 
         config = PinToolConfig.load()
         
-        self.pdk_info = None
         self.pin_layer_info = None
         
-        tech = self.tech
-        if tech is None:
-            if Debugging.DEBUG:
-                debug(f"PinToolPlugin.activate, can't find technology")
-        else:
-            self.pdk_info = self.pdk_info_factory.pdk_info(tech.name)
-            
+        self.update_tech()
+
+        if self.pdk_info is not None:            
             current_layer_name = self.get_current_layer_name()
             if current_layer_name is None:
                 if Debugging.DEBUG:
@@ -331,7 +338,6 @@ class PinToolPlugin(pya.Plugin):
                 if self.pin_layer_info is not None:
                     config.short_layer_name = self.pin_layer_info.short_layer_name
 
-        self.setupDock.set_pdk_info(self.pdk_info)                
         self.setupDock.set_config(config)
     
     def navigateToNextTextField(self):
@@ -355,6 +361,30 @@ class PinToolPlugin(pya.Plugin):
         esc_key  = 16777216 
         keyPress = pya.QKeyEvent(pya.QKeyEvent.KeyPress, esc_key, pya.Qt.NoModifier)
         pya.QApplication.sendEvent(self.view.widget(), keyPress)        
+    
+    def menu_activated(self, symbol: str) -> bool:
+        if Debugging.DEBUG:
+            debug(f"PinToolPlugin.menu_activated: symbol={symbol}")
+            
+        if symbol == 'technology_selector:apply_technology':
+            if Debugging.DEBUG:
+                debug(f"PinToolPlugin.menu_activated: "
+                      f"pya.CellView.active().technology().name={pya.CellView.active().technology} (NOTE: old, that's why we need defer)")
+            # NOTE: we have to defer, otherwise the CellView won't have the new tech yet
+            EventLoop.defer(self.technology_applied)
+    
+    def technology_applied(self):
+        new_tech_name = pya.CellView.active().technology
+        if Debugging.DEBUG:
+            debug(f"PinToolPlugin.technology_applied, "
+                  f"for cell view {self.cell_view.cell_name}, "
+                  f"tech: {new_tech_name}")
+            
+        try:
+            self.update_tech()
+        except Exception as e:
+            print("PinToolPlugin.technology_applied caught an exception", e)
+            traceback.print_exc()        
     
     def visible_layer_indexes(self) -> List[int]:
         idxs = []
@@ -444,7 +474,6 @@ class PinToolPlugin(pya.Plugin):
         # e.g. for IHP Metal3.pin, this did return -1
         li = self.layout.layer(lp.source_layer, lp.source_datatype)
         return li
-
         
     def commit_place_pin(self, dpoint: pya.DPoint):
         self.clear_markers()
