@@ -13,6 +13,11 @@
  <author>Martin Jan Köhler</author>
  <author-contact/>
  <authored-time/>
+ <depends>
+  <name>KLayoutPluginUtils</name>
+  <url/>
+  <version>0.3</version>
+ </depends>
  <installed-time></installed-time>
  <icon></icon>
  <screenshot></screenshot>
