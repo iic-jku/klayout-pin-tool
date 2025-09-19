@@ -448,6 +448,9 @@ class PinToolPlugin(pya.Plugin):
     def mouse_click_event(self, dpoint: pya.DPoint, buttons: int, prio: bool):
         if prio:
             if buttons in [8]:  # Left click
+                if self.editor_options is None:
+                    return False  # not fully activated yet
+                    
                 snapped_to_cursor = self.editor_options.snap_to_grid_if_necessary(dpoint)
                 self.commit_place_pin(snapped_to_cursor)
                 
