@@ -588,8 +588,7 @@ class PinToolPlugin(pya.Plugin):
                                           on_accept=on_user_chose_layer,
                                           on_reject=on_user_cancelled)
             dialog.exec_()
-            if user_cancelled:
-                return
+            return
         
         self.pin_layer_info = self.pdk_info.pin_layer_info(config.short_layer_name)
         if self.pin_layer_info is not None:
