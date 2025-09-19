@@ -374,6 +374,8 @@ class PinToolPlugin(pya.Plugin):
             # NOTE: we have to defer, otherwise the CellView won't have the new tech yet
             EventLoop.defer(self.technology_applied)
     
+        return False
+    
     def technology_applied(self):
         new_tech_name = pya.CellView.active().technology
         if Debugging.DEBUG:
