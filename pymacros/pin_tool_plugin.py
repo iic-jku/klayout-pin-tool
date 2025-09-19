@@ -19,6 +19,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 import os 
+from pathlib import Path
 import sys
 import traceback
 from typing import *
@@ -183,8 +184,9 @@ class PinToolSetupWidget(pya.QWidget):
     def set_pdk_info(self, pdk_info: Optional[PinPDKInfo]):
         self.layer_value.clear()
         new_items = ['None selected']
-        for pli in pdk_info.pin_layer_infos:
-            new_items.append(pli.short_layer_name)
+        if pdk_info is not None:
+            for pli in pdk_info.pin_layer_infos:
+                new_items.append(pli.short_layer_name)
         self.layer_value.addItems(new_items)
         
     def set_config(self, config: PinToolConfig):
@@ -206,6 +208,55 @@ class PinToolSetupWidget(pya.QWidget):
         lv = self.layer_value.currentText
         short_layer_name = None if lv == 'None selected' else lv
         return PinToolConfig(short_layer_name, self.pin_value.text, self.w_value.value, self.h_value.value)
+
+
+class LayerSelectionDialog(pya.QDialog):
+    def __init__(self, 
+                 pdk_info: PinPDKInfo, 
+                 parent: pya.QWidget,
+                 on_accept: Optional[Callable[str]],
+                 on_reject: Optional[Callable]):
+        super().__init__(parent)
+        
+        self.setWindowTitle('Select a layer')
+        layout_main = pya.QVBoxLayout(self)
+        layout_main.addWidget(pya.QLabel('Please select a layer:'))
+        self.setLayout(layout_main)
+        
+        self.layer_combo = pya.QComboBox(self)
+        new_items = ['None selected']
+        for pli in pdk_info.pin_layer_infos:
+            new_items.append(pli.short_layer_name)
+        self.layer_combo.addItems(new_items)
+        layout_main.addWidget(self.layer_combo)
+        
+        self.on_accept = on_accept
+        self.on_reject = on_reject
+        
+        buttons = pya.QDialogButtonBox(pya.Qt.Horizontal, self)
+        self.ok_button = pya.QPushButton('OK')
+        self.ok_button.setEnabled(False)
+        self.cancel_button = pya.QPushButton('Cancel')
+        buttons.addButton(self.ok_button, pya.QDialogButtonBox.AcceptRole)
+        buttons.addButton(self.cancel_button, pya.QDialogButtonBox.RejectRole)
+        buttons.accepted.connect(self._accept_clicked)
+        buttons.rejected.connect(self._reject_clicked)
+        layout_main.addWidget(buttons)
+
+        self.layer_combo.currentIndexChanged.connect(self._on_combo_changed)
+        
+    def _on_combo_changed(self):
+        self.ok_button.setEnabled(self.layer_combo.currentText != 'None selected')
+        
+    def _accept_clicked(self):
+        if self.on_accept:
+            self.on_accept(self.layer_combo.currentText)
+        self.accept()
+
+    def _reject_clicked(self):
+        if self.on_reject:
+            self.on_reject()
+        self.reject()
 
 
 class PinToolPlugin(pya.Plugin):
@@ -247,7 +298,8 @@ class PinToolPlugin(pya.Plugin):
         if Debugging.DEBUG:
             debug(f"PinToolPlugin.on_apply_technology, "
                   f"for cell view {self.cell_view.cell_name}")
-    
+        self.update_tech()
+        
     @property
     def cell_view(self) -> pya.CellView:
         return self.view.active_cellview()
@@ -285,9 +337,9 @@ class PinToolPlugin(pya.Plugin):
         return name
     
     def update_tech(self):
-        tech = self.tech
         self.pdk_info = None
-        if tech is None:
+        tech = self.tech
+        if tech is None or tech.name == '':
             if Debugging.DEBUG:
                 debug(f"PinToolPlugin.activate, can't find technology")
         else:
@@ -295,6 +347,23 @@ class PinToolPlugin(pya.Plugin):
         
         if self.setupDock is not None:
             self.setupDock.set_pdk_info(self.pdk_info)                
+    
+    def report_tech_related_errors(self):
+        error_msg : Optional[str] = None
+        
+        tech = self.tech
+        if tech is None or tech.name == '':
+            error_msg = 'Pin tool requires the technology to be set!'
+        elif self.pdk_info is None:
+            error_msg = f"Pin tool does not support the technology '{tech.name}' yet"
+
+        if error_msg is not None:
+            mb = pya.QMessageBox()
+            mb.setIcon(pya.QMessageBox.Critical)
+            mb.setWindowTitle('Error')
+            mb.setText(error_msg)
+            mb.setStandardButtons(pya.QMessageBox.Ok)
+            mb.exec_()
     
     def activated(self):
         view_is_visible = self.view.widget().isVisible()
@@ -340,6 +409,8 @@ class PinToolPlugin(pya.Plugin):
 
         self.setupDock.set_config(config)
     
+        self.report_tech_related_errors()
+    
     def navigateToNextTextField(self):
         EventLoop.defer(self.setupDock.navigateToNextTextField)
     
@@ -372,6 +443,8 @@ class PinToolPlugin(pya.Plugin):
                       f"pya.CellView.active().technology().name={pya.CellView.active().technology} (NOTE: old, that's why we need defer)")
             # NOTE: we have to defer, otherwise the CellView won't have the new tech yet
             EventLoop.defer(self.technology_applied)
+    
+        return False
     
     def technology_applied(self):
         new_tech_name = pya.CellView.active().technology
@@ -444,6 +517,9 @@ class PinToolPlugin(pya.Plugin):
     def mouse_click_event(self, dpoint: pya.DPoint, buttons: int, prio: bool):
         if prio:
             if buttons in [8]:  # Left click
+                if self.editor_options is None:
+                    return False  # not fully activated yet
+                    
                 snapped_to_cursor = self.editor_options.snap_to_grid_if_necessary(dpoint)
                 self.commit_place_pin(snapped_to_cursor)
                 
@@ -494,21 +570,29 @@ class PinToolPlugin(pya.Plugin):
 
         config = self.setupDock.config_from_ui()
 
+        user_cancelled = False
+        def on_user_cancelled():
+            nonlocal user_cancelled
+            user_cancelled = True
+
+        def on_user_chose_layer(short_layer_name: str):
+            config.short_layer_name = short_layer_name
+            self.setupDock.set_config(config)
+
         if config.short_layer_name is None:
-            mb = pya.QMessageBox()
-            mb.setIcon(pya.QMessageBox.Critical)
-            mb.setWindowTitle('Error')
-            mb.setText('Please select a layer first')
-            mb.setStandardButtons(pya.QMessageBox.Ok)
-            mb.exec_()
-            
             if Debugging.DEBUG:
-                debug(f"PinToolPlugin.commit_place_pin, can't find PinLayerInfo, ignoring this request")
+                debug(f"PinToolPlugin.commit_place_pin, can't find PinLayerInfo, ask user via dialog")
+                
+            dialog = LayerSelectionDialog(pdk_info=self.pdk_info,
+                                          parent=pya.MainWindow.instance(),
+                                          on_accept=on_user_chose_layer,
+                                          on_reject=on_user_cancelled)
+            dialog.exec_()
             return
-        else:
-            self.pin_layer_info = self.pdk_info.pin_layer_info(config.short_layer_name)
-            if self.pin_layer_info is not None:
-                config.short_layer_name = self.pin_layer_info.short_layer_name
+        
+        self.pin_layer_info = self.pdk_info.pin_layer_info(config.short_layer_name)
+        if self.pin_layer_info is not None:
+            config.short_layer_name = self.pin_layer_info.short_layer_name
         
         cell_index = self.cell_view.cell_index
         dbox = pya.DBox(dpoint.x - config.width/2.0, dpoint.y - config.height/2.0,
