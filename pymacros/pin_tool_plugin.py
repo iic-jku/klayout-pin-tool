@@ -183,8 +183,9 @@ class PinToolSetupWidget(pya.QWidget):
     def set_pdk_info(self, pdk_info: Optional[PinPDKInfo]):
         self.layer_value.clear()
         new_items = ['None selected']
-        for pli in pdk_info.pin_layer_infos:
-            new_items.append(pli.short_layer_name)
+        if pdk_info is not None:
+            for pli in pdk_info.pin_layer_infos:
+                new_items.append(pli.short_layer_name)
         self.layer_value.addItems(new_items)
         
     def set_config(self, config: PinToolConfig):
