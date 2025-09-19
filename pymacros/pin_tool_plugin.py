@@ -249,7 +249,8 @@ class PinToolPlugin(pya.Plugin):
         if Debugging.DEBUG:
             debug(f"PinToolPlugin.on_apply_technology, "
                   f"for cell view {self.cell_view.cell_name}")
-    
+        self.update_tech()
+        
     @property
     def cell_view(self) -> pya.CellView:
         return self.view.active_cellview()
@@ -287,9 +288,9 @@ class PinToolPlugin(pya.Plugin):
         return name
     
     def update_tech(self):
-        tech = self.tech
         self.pdk_info = None
-        if tech is None:
+        tech = self.tech
+        if tech is None or tech.name == '':
             if Debugging.DEBUG:
                 debug(f"PinToolPlugin.activate, can't find technology")
         else:
@@ -297,6 +298,23 @@ class PinToolPlugin(pya.Plugin):
         
         if self.setupDock is not None:
             self.setupDock.set_pdk_info(self.pdk_info)                
+    
+    def report_tech_related_errors(self):
+        error_msg : Optional[str] = None
+        
+        tech = self.tech
+        if tech is None or tech.name == '':
+            error_msg = 'Pin tool requires the technology to be set!'
+        elif self.pdk_info is None:
+            error_msg = f"Pin tool does not support the technology '{tech.name}' yet"
+
+        if error_msg is not None:
+            mb = pya.QMessageBox()
+            mb.setIcon(pya.QMessageBox.Critical)
+            mb.setWindowTitle('Error')
+            mb.setText(error_msg)
+            mb.setStandardButtons(pya.QMessageBox.Ok)
+            mb.exec_()
     
     def activated(self):
         view_is_visible = self.view.widget().isVisible()
@@ -341,6 +359,8 @@ class PinToolPlugin(pya.Plugin):
                     config.short_layer_name = self.pin_layer_info.short_layer_name
 
         self.setupDock.set_config(config)
+    
+        self.report_tech_related_errors()
     
     def navigateToNextTextField(self):
         EventLoop.defer(self.setupDock.navigateToNextTextField)
