@@ -210,6 +210,55 @@ class PinToolSetupWidget(pya.QWidget):
         return PinToolConfig(short_layer_name, self.pin_value.text, self.w_value.value, self.h_value.value)
 
 
+class LayerSelectionDialog(pya.QDialog):
+    def __init__(self, 
+                 pdk_info: PinPDKInfo, 
+                 parent: pya.QWidget,
+                 on_accept: Optional[Callable[str]],
+                 on_reject: Optional[Callable]):
+        super().__init__(parent)
+        
+        self.setWindowTitle('Select a layer')
+        layout_main = pya.QVBoxLayout(self)
+        layout_main.addWidget(pya.QLabel('Please select a layer:'))
+        self.setLayout(layout_main)
+        
+        self.layer_combo = pya.QComboBox(self)
+        new_items = ['None selected']
+        for pli in pdk_info.pin_layer_infos:
+            new_items.append(pli.short_layer_name)
+        self.layer_combo.addItems(new_items)
+        layout_main.addWidget(self.layer_combo)
+        
+        self.on_accept = on_accept
+        self.on_reject = on_reject
+        
+        buttons = pya.QDialogButtonBox(pya.Qt.Horizontal, self)
+        self.ok_button = pya.QPushButton('OK')
+        self.ok_button.setEnabled(False)
+        self.cancel_button = pya.QPushButton('Cancel')
+        buttons.addButton(self.ok_button, pya.QDialogButtonBox.AcceptRole)
+        buttons.addButton(self.cancel_button, pya.QDialogButtonBox.RejectRole)
+        buttons.accepted.connect(self._accept_clicked)
+        buttons.rejected.connect(self._reject_clicked)
+        layout_main.addWidget(buttons)
+
+        self.layer_combo.currentIndexChanged.connect(self._on_combo_changed)
+        
+    def _on_combo_changed(self):
+        self.ok_button.setEnabled(self.layer_combo.currentText != 'None selected')
+        
+    def _accept_clicked(self):
+        if self.on_accept:
+            self.on_accept(self.layer_combo.currentText)
+        self.accept()
+
+    def _reject_clicked(self):
+        if self.on_reject:
+            self.on_reject()
+        self.reject()
+
+
 class PinToolPlugin(pya.Plugin):
     def __init__(self, view: pya.LayoutView):
         super().__init__()
@@ -521,21 +570,30 @@ class PinToolPlugin(pya.Plugin):
 
         config = self.setupDock.config_from_ui()
 
+        user_cancelled = False
+        def on_user_cancelled():
+            nonlocal user_cancelled
+            user_cancelled = True
+
+        def on_user_chose_layer(short_layer_name: str):
+            config.short_layer_name = short_layer_name
+            self.setupDock.set_config(config)
+
         if config.short_layer_name is None:
-            mb = pya.QMessageBox()
-            mb.setIcon(pya.QMessageBox.Critical)
-            mb.setWindowTitle('Error')
-            mb.setText('Please select a layer first')
-            mb.setStandardButtons(pya.QMessageBox.Ok)
-            mb.exec_()
-            
             if Debugging.DEBUG:
-                debug(f"PinToolPlugin.commit_place_pin, can't find PinLayerInfo, ignoring this request")
-            return
-        else:
-            self.pin_layer_info = self.pdk_info.pin_layer_info(config.short_layer_name)
-            if self.pin_layer_info is not None:
-                config.short_layer_name = self.pin_layer_info.short_layer_name
+                debug(f"PinToolPlugin.commit_place_pin, can't find PinLayerInfo, ask user via dialog")
+                
+            dialog = LayerSelectionDialog(pdk_info=self.pdk_info,
+                                          parent=pya.MainWindow.instance(),
+                                          on_accept=on_user_chose_layer,
+                                          on_reject=on_user_cancelled)
+            dialog.exec_()
+            if user_cancelled:
+                return
+        
+        self.pin_layer_info = self.pdk_info.pin_layer_info(config.short_layer_name)
+        if self.pin_layer_info is not None:
+            config.short_layer_name = self.pin_layer_info.short_layer_name
         
         cell_index = self.cell_view.cell_index
         dbox = pya.DBox(dpoint.x - config.width/2.0, dpoint.y - config.height/2.0,
