@@ -276,7 +276,10 @@ class PinToolPlugin(pya.Plugin):
         self.view.on_layer_list_changed += self.on_layer_list_changed
         self.view.on_selection_changed += self.on_selection_changed
         self.view.on_apply_technology += self.on_apply_technology
-
+        
+        if 'on_current_layer_changed' in dir(self.view):  # KLayout >= 0.30.5
+            self.view.on_current_layer_changed += self.on_current_layer_changed
+            
         self.markers = []
 
     def on_layer_list_changed(self, idx: int):
@@ -288,6 +291,8 @@ class PinToolPlugin(pya.Plugin):
         if Debugging.DEBUG:
             debug(f"PinToolPlugin.on_current_layer_changed, "
                   f"for cell view {self.cell_view.cell_name}")
+    
+        self.update_current_layer_status()
     
     def on_selection_changed(self):
         if Debugging.DEBUG:
@@ -389,14 +394,17 @@ class PinToolPlugin(pya.Plugin):
         # NOTE: defer twice, strange but necessary
         EventLoop.defer(self.navigateToNextTextField)        
 
-        short_layer_name: Optional[str] = None
-
-        config = PinToolConfig.load()
-        
-        self.pin_layer_info = None
-        
         self.update_tech()
-
+        
+        self.update_current_layer_status()
+    
+        self.report_tech_related_errors()
+    
+    def update_current_layer_status(self):
+        self.pin_layer_info = None
+        config = PinToolConfig.load()
+        config.short_layer_name = None
+        
         if self.pdk_info is not None:            
             current_layer_name = self.get_current_layer_name()
             if current_layer_name is None:
@@ -407,9 +415,8 @@ class PinToolPlugin(pya.Plugin):
                 if self.pin_layer_info is not None:
                     config.short_layer_name = self.pin_layer_info.short_layer_name
 
-        self.setupDock.set_config(config)
-    
-        self.report_tech_related_errors()
+        if self.setupDock is not None:
+            self.setupDock.set_config(config)
     
     def navigateToNextTextField(self):
         EventLoop.defer(self.setupDock.navigateToNextTextField)
