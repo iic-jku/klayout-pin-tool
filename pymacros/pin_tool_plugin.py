@@ -506,6 +506,18 @@ class PinToolPlugin(pya.Plugin):
         point_marker.set(marker_box.to_dtype(self.dbu))
         markers += [point_marker]
         
+        config = self.setupDock.config_from_ui()
+        
+        pin_shape_box = pya.DBox(pya.DPoint(dpoint.x - config.width/2.0, dpoint.y - config.height/2.0),
+                                 pya.DPoint(dpoint.x + config.width/2.0, dpoint.y + config.height/2.0))        
+        marker = pya.Marker(self.view)
+        marker.line_style     = 2
+        marker.line_width     = 2
+        marker.vertex_size    = 0 
+        marker.dither_pattern = 1
+        marker.set(pin_shape_box)
+        markers += [marker]        
+        
         return markers
     
     def mouse_moved_event(self, dpoint: pya.DPoint, buttons: int, prio: bool):
