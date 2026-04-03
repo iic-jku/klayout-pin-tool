@@ -3,7 +3,7 @@
  <name>PinToolPlugin</name>
  <token/>
  <hidden>false</hidden>
- <version>0.5</version>
+ <version>0.6</version>
  <api-version/>
  <title>Pin Tool Plugin</title>
  <doc>Efficient placement of pins</doc>
