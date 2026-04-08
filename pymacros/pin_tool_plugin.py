@@ -625,7 +625,7 @@ class PinToolPlugin(pya.Plugin):
                 r.insert(box)
                 lyr = self.layer_number_for_layer_name(ln)
                 if lyr == -1:
-                    raise Exception(f"PinToolPlugin.commit_place_pin, can't find layer index for layer {ln})")
+                    raise Exception(f"PinToolPlugin.commit_place_pin, can't find layer index for layer {ln}")
                 self.layout.insert(cell_index, lyr, r)
                 
             for ln in self.pdk_info.layers_of_groups(self.pin_layer_info.label_layers):
@@ -633,7 +633,7 @@ class PinToolPlugin(pya.Plugin):
                 t = pya.Texts(dt.to_itype(self.dbu))
                 lyr = self.layer_number_for_layer_name(ln)
                 if lyr == -1:
-                    raise Exception(f"PinToolPlugin.commit_place_pin, can't find layer index for layer {ln})")
+                    raise Exception(f"PinToolPlugin.commit_place_pin, can't find layer index for layer {ln}")
                 self.layout.insert(cell_index, lyr, t)
                 
                 config.save()

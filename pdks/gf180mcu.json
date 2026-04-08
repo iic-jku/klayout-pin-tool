@@ -1,0 +1,198 @@
+{
+  "tech_name": "gf180mcu",
+  "layer_group_definitions": [
+    {
+      "name": "Metal1.PinLayers",
+      "layers": [
+        "Metal1_Label"
+      ]
+    },
+    {
+      "name": "Metal1.LabelLayers",
+      "layers": [
+        "Metal1_Label"
+      ]
+    },
+    {
+      "name": "Metal1.RelatedLayers",
+      "layers": [
+        "Metal1",
+        "Metal1_Label"
+      ]
+    },
+
+    {
+      "name": "Metal2.PinLayers",
+      "layers": [
+        "Metal2_Label"
+      ]
+    },
+    {
+      "name": "Metal2.LabelLayers",
+      "layers": [
+        "Metal2_Label"
+      ]
+    },
+    {
+      "name": "Metal2.RelatedLayers",
+      "layers": [
+        "Metal2",
+        "Metal2_Label"
+      ]
+    },
+
+    {
+      "name": "Metal3.PinLayers",
+      "layers": [
+        "Metal3_Label"
+      ]
+    },
+    {
+      "name": "Metal3.LabelLayers",
+      "layers": [
+        "Metal3_Label"
+      ]
+    },
+    {
+      "name": "Metal3.RelatedLayers",
+      "layers": [
+        "Metal3",
+        "Metal3_Label"
+      ]
+    },
+
+    {
+      "name": "Metal4.PinLayers",
+      "layers": [
+        "Metal4_Label"
+      ]
+    },
+    {
+      "name": "Metal4.LabelLayers",
+      "layers": [
+        "Metal4_Label"
+      ]
+    },
+    {
+      "name": "Metal4.RelatedLayers",
+      "layers": [
+        "Metal4",
+        "Metal4_Label"
+      ]
+    },
+
+    {
+      "name": "Metal5.PinLayers",
+      "layers": [
+        "Metal5_Label"
+      ]
+    },
+    {
+      "name": "Metal5.LabelLayers",
+      "layers": [
+        "Metal5_Label"
+      ]
+    },
+    {
+      "name": "Metal5.RelatedLayers",
+      "layers": [
+        "Metal5",
+        "Metal5_Label"
+      ]
+    },
+
+    {
+      "name": "MetalTop.PinLayers",
+      "layers": [
+        "MetalTop_Label"
+      ]
+    },
+    {
+      "name": "MetalTop.LabelLayers",
+      "layers": [
+        "MetalTop_Label"
+      ]
+    },
+    {
+      "name": "MetalTop.RelatedLayers",
+      "layers": [
+        "MetalTop",
+        "MetalTop_Label"
+      ]
+    }
+  ],
+  "pin_layer_infos": [
+    {
+      "short_layer_name": "Metal1",
+      "related_layers": [
+        "Metal1.RelatedLayers"
+      ],
+      "pin_layers": [
+        "Metal1.PinLayers"
+      ],
+      "label_layers": [
+        "Metal1.LabelLayers"
+      ]
+    },
+    {
+      "short_layer_name": "Metal2",
+      "related_layers": [
+        "Metal2.RelatedLayers"
+      ],
+      "pin_layers": [
+        "Metal2.PinLayers"
+      ],
+      "label_layers": [
+        "Metal2.LabelLayers"
+      ]
+    },
+    {
+      "short_layer_name": "Metal3",
+      "related_layers": [
+        "Metal3.RelatedLayers"
+      ],
+      "pin_layers": [
+        "Metal3.PinLayers"
+      ],
+      "label_layers": [
+        "Metal3.LabelLayers"
+      ]
+    },
+    {
+      "short_layer_name": "Metal4",
+      "related_layers": [
+        "Metal4.RelatedLayers"
+      ],
+      "pin_layers": [
+        "Metal4.PinLayers"
+      ],
+      "label_layers": [
+        "Metal4.LabelLayers"
+      ]
+    },
+    {
+      "short_layer_name": "Metal5",
+      "related_layers": [
+        "Metal5.RelatedLayers"
+      ],
+      "pin_layers": [
+        "Metal5.PinLayers"
+      ],
+      "label_layers": [
+        "Metal5.LabelLayers"
+      ]
+    },
+    {
+      "short_layer_name": "MetalTop",
+      "related_layers": [
+        "MetalTop.RelatedLayers"
+      ],
+      "pin_layers": [
+        "MetalTop.PinLayers"
+      ],
+      "label_layers": [
+        "MetalTop.LabelLayers"
+      ]
+    }
+  ]
+}
