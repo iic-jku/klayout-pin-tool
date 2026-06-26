@@ -372,13 +372,15 @@ class PinToolPlugin(pya.Plugin):
     
     def activated(self):
         view_is_visible = self.view.widget().isVisible()
-        if Debugging.DEBUG:
-            debug(f"PinToolPlugin.activated, "
-                  f"for cell view {self.cell_view.cell_name}, "
-                  f"is visible: {view_is_visible}")
-            debug(f"viewport trans: {self.view.viewport_trans()}")
         if not view_is_visible:
             return
+        if self.cell_view is None:
+            return
+        if self.layout is None:
+            return
+
+        if Debugging.DEBUG:
+            debug(f"PinToolPlugin.activated, for cell {self.cell_view.cell.name}")
 
         script_dir = Path(__file__).resolve().parent
         self.pdk_info_factory = PinPDKInfoFactory(search_path=[script_dir / '..' / 'pdks'])
